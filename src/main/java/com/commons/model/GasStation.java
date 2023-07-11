@@ -56,15 +56,23 @@ public class GasStation {
 
     /**
      * We want to know the exact value (in money) of the current quantity of fuel inside the car's tank.
+     *
+     * @param fuelQuantityOfCar Total quantity fuel of car started.
+     * @param gasStationList fuel amount that filled the car at each Gas Station.
+     * @return
      */
     public double restOfFuelInsideTheTank(double fuelQuantityOfCar, List<GasStation> gasStationList) {
         double restFuelInsideTheTank = 0.0;
 
         for (GasStation gas : gasStationList) {
             double minQuantity = Math.min(fuelQuantityOfCar, gas.get_quantity());
-            double value = minQuantity * gas.get_price();
 
+            if (fuelQuantityOfCar <= minQuantity) {
+                break;
+            }
+            double value = minQuantity * gas.get_price();
             restFuelInsideTheTank = restFuelInsideTheTank + value;
+            System.out.println(restFuelInsideTheTank);
         }
         return restFuelInsideTheTank;
     }

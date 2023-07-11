@@ -9,12 +9,12 @@ public class main {
         List<GasStation> listFromGasStation = new ArrayList();
         listFromGasStation.add(new GasStation(20, 2.0));
         listFromGasStation.add(new GasStation(15, 1.8));
+        listFromGasStation.add(new GasStation(25, 2.1));
 
         GasStation gs = new GasStation();
         double fuelValue =
-                gs.restOfFuelInsideTheTank(30, listFromGasStation);
+                gs.restOfFuelInsideTheTank(50, listFromGasStation);
         System.out.println(
-                String.format(
-                        "The value (money) of the fuel in the tank. " + fuelValue + " €"));
+                String.format("The value (money) of the fuel in the tank. " + fuelValue + " €"));
     }
 }
