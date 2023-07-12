@@ -68,14 +68,14 @@ public class GasStation {
         double fuel = totalQuantity - currentFuel;
 
         for (GasStation gas : gasStationList) {
-            if (fuel == 0 || fuel < 0) {
-                totalMoney += gas.get_quantity() * gas.get_price();
-            }
-            if (fuel >= gas.get_quantity() || fuel < 0) {
+
+            if (fuel >= gas.get_quantity()) {
                 fuel -= gas.get_quantity();
             } else if (fuel > 0) {
                 totalMoney += (gas.get_quantity() - fuel) * gas.get_price();
-                fuel -= gas.get_quantity();
+                fuel = 0;
+            } else {
+                totalMoney += gas.get_quantity() * gas.get_price();
             }
         }
         return totalMoney;
