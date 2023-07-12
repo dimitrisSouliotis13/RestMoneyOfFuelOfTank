@@ -7,10 +7,6 @@ public class GasStation {
     private double _quantity;
     private double _price;
 
-    //Constructor_simple
-    public GasStation() {
-    }
-
     //Constructor_full
     public GasStation(double quantity, double price) {
         this._quantity = quantity;
@@ -57,23 +53,31 @@ public class GasStation {
     /**
      * We want to know the exact value (in money) of the current quantity of fuel inside the car's tank.
      *
-     * @param fuelQuantityOfCar Total quantity fuel of car started.
+     * @param currentFuel    Total quantity fuel of car in the end.
      * @param gasStationList fuel amount that filled the car at each Gas Station.
      * @return
      */
-    public double restOfFuelInsideTheTank(double fuelQuantityOfCar, List<GasStation> gasStationList) {
-        double restFuelInsideTheTank = 0.0;
+    public static double restOfFuelInsideTheTank(double currentFuel, List<GasStation> gasStationList) {
+        double totalMoney = 0.0;
+        double totalQuantity = 0.0;
 
         for (GasStation gas : gasStationList) {
-            double minQuantity = Math.min(fuelQuantityOfCar, gas.get_quantity());
-
-            if (fuelQuantityOfCar <= minQuantity) {
-                break;
-            }
-            double value = minQuantity * gas.get_price();
-            restFuelInsideTheTank = restFuelInsideTheTank + value;
-            System.out.println(restFuelInsideTheTank);
+            double quantity = gas.get_quantity();
+            totalQuantity += quantity;
         }
-        return restFuelInsideTheTank;
+        double fuel = totalQuantity - currentFuel;
+
+        for (GasStation gas : gasStationList) {
+            if (fuel == 0 || fuel < 0) {
+                totalMoney += gas.get_quantity() * gas.get_price();
+            }
+            if (fuel >= gas.get_quantity() || fuel < 0) {
+                fuel -= gas.get_quantity();
+            } else if (fuel > 0) {
+                totalMoney += (gas.get_quantity() - fuel) * gas.get_price();
+                fuel -= gas.get_quantity();
+            }
+        }
+        return totalMoney;
     }
 }

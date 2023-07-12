@@ -7,14 +7,14 @@ public class main {
     public static void main(String[] args) {
 
         List<GasStation> listFromGasStation = new ArrayList();
-        listFromGasStation.add(new GasStation(20, 2.0));
-        listFromGasStation.add(new GasStation(15, 1.8));
-        listFromGasStation.add(new GasStation(25, 2.1));
+        listFromGasStation.add(new GasStation(40, 2.0));
+        listFromGasStation.add(new GasStation(15, 1.0));
 
-        GasStation gs = new GasStation();
         double fuelValue =
-                gs.restOfFuelInsideTheTank(50, listFromGasStation);
+                GasStation.restOfFuelInsideTheTank(20, listFromGasStation);
+
         System.out.println(
-                String.format("The value (money) of the fuel in the tank. " + fuelValue + " €"));
+                String.format(
+                        "The value (money) of the fuel in the tank. " + fuelValue + " €"));
     }
 }
